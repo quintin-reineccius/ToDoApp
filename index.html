@@ -6,10 +6,13 @@
     <link href="styles.css" rel="stylesheet">
   </head>
   <body>
-    <form action="get" method="get">
-      Add things to do: <input class="user-input" type="text" name="input">
+
+    <form onsubmit="desplayingUserInput">
+      Add things to do: <input class="user-input" type="text" name="add-items">
       <input class="submit-button" type="submit" value="Submit">
     </form>
+
+    <ul></ul>
 
     <script src="app.js" type="text/javascript"></script>
   </body>
