@@ -7,13 +7,21 @@ var submitButton = document.querySelector('.submit-button');
 //function that will grab user input and desplay it
 function displayingUserInput(event){
   event.preventDefault();
-  var placeHolder = document.querySelector('ul');
-  var userItem = document.createElement('li');
-  var userText = document.createTextNode(userInput.value);
-  userItem.appendChild(userText);
-  placeHolder.appendChild(userItem);
-  userInput.value = "";
-  countingListItems();
+  //check for emepty string
+  if(userInput.value === ""){
+    return;
+  }
+    var placeHolder = document.querySelector('ul');
+    var userItem = document.createElement('li');
+    var checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.onchange = crossOutListItems;
+    var userText = document.createTextNode(userInput.value);
+    userItem.appendChild(checkbox);
+    userItem.appendChild(userText);
+    placeHolder.appendChild(userItem);
+    userInput.value = "";
+    countingListItems();
 }
 
 //makes the submit button display user input
@@ -36,6 +44,17 @@ function clearAllListItems(){
 function countingListItems(){
   var numberOfListItems = listItemHolder.childNodes.length;
   document.querySelector('p').innerHTML = numberOfListItems + " Things to do!";
+}
+
+//function that will cross out list item when checkbox is checked by a user
+function crossOutListItems(event){
+  var checkBox = event.target;
+  var listItem = checkBox.parentNode;
+  if(checkBox.checked == true){
+    listItem.style.textDecoration="line-through";
+  }else{
+    listItem.style.textDecoration="none";
+  }
 }
 
 //when window loads the item counter will be ready
